@@ -1,0 +1,31 @@
+.misha_loadmore{
+	background-color: #ddd;
+	border-radius: 2px;
+	display: block;
+	text-align: center;
+	font-size: 14px;
+	font-size: 0.875rem;
+	font-weight: 800;
+	letter-spacing:1px;
+	cursor:pointer;
+	text-transform: uppercase;
+	padding: 10px 0;
+	transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.3s ease-in-out;  
+}
+.misha_loadmore:hover{
+	background-color: #767676;
+	color: #fff;
+}
+.title{
+	width: 200px;
+	background-color: green;
+	margin-bottom: 10px;
+}
+.site-content{
+	text-align: left;
+	width: 500px;
+	margin: 0 auto;
+}
+.loader-text{
+	display: none;
+}

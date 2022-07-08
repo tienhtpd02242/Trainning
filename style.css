@@ -1,0 +1,124 @@
+/*
+Theme Name: Trainning
+Theme URI: https://wordpress.org/themes/twentytwentytwo/
+Author: the WordPress team
+Author URI: https://wordpress.org/
+Description: Built on a solidly designed foundation, Twenty Twenty-Two embraces the idea that everyone deserves a truly unique website. The theme’s subtle styles are inspired by the diversity and versatility of birds: its typography is lightweight yet strong, its color palette is drawn from nature, and its layout elements sit gently on the page. The true richness of Twenty Twenty-Two lies in its opportunity for customization. The theme is built to take advantage of the Full Site Editing features introduced in WordPress 5.9, which means that colors, typography, and the layout of every single page on your site can be customized to suit your vision. It also includes dozens of block patterns, opening the door to a wide range of professionally designed layouts in just a few clicks. Whether you’re building a single-page website, a blog, a business website, or a portfolio, Twenty Twenty-Two will help you create a site that is uniquely yours.
+Requires at least: 5.9
+Tested up to: 5.9
+Requires PHP: 5.6
+Version: 1.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: twentynineteen
+Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, featured-images, full-site-editing, block-patterns, rtl-language-support, sticky-post, threaded-comments
+template: genesis
+Twenty Twenty-Two WordPress Theme, (C) 2021 WordPress.org
+Twenty Twenty-Two is distributed under the terms of the GNU GPL.
+*/
+
+.wrap, .wrap-cat{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.item{
+    background-color: #000000;
+    padding: 16px;
+}
+.item a{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.page-numbers{
+    font-size: 18px;
+    font-weight: 700;
+}
+.page-numbers.current{
+    color: red;
+}
+
+.wrap_pagination, .wrap_pagination_cat, .wrap_pagination_pt{
+    text-align: center;
+    margin-top: 24px;
+}
+
+.wrap-search{
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom: 24px;
+}
+
+.wrap-search input{
+    width: 100%;
+    padding: 16px;
+    font-size: 18px;
+    line-height: 100%;
+    font-weight: bold;
+}
+
+.wrap-body{
+    max-width: 800px;
+    margin: 0 auto;
+}
+.wrap-body ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+.wrap-body ul li{
+    width: 25%;
+    background-color: #fafafa;
+    padding: 24px;
+    cursor: pointer;
+    font-weight: 700;
+}
+.wrap-body ul li.active{
+    background-color: #000000;
+    color: #FFFFFF;
+}
+.wrap-body ul li:not(:last-child){
+    border-right: 1px solid #000000;
+}
+
+.wrap-cat{
+    margin-top: 24px;
+}
+
+.container{
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.header-main .menu{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    background-color: #fafafa;
+}
+.header-main .menu li{
+    border-right: 1px solid #000;
+}
+.header-main .menu li a{
+    padding: 16px;
+    display: inline-block;
+    text-decoration: none;
+    color: #333333;
+    font-size: 18px;
+    font-weight: bold;
+}
+.header-main .menu li a.active{
+    color: #FF0000;
+}
+
