@@ -2,6 +2,7 @@
 get_header();
 
 echo "But I will edit somethings :)";
+echo "This is dev branch";
 
 $option = $_GET['filter_by'] ? $_GET['filter_by'] : 'all';
 
