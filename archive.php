@@ -1,42 +1,70 @@
-<?php 
+<?php
 get_header();
 
-$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+$option = $_GET['filter_by'] ? $_GET['filter_by'] : 'all';
 
-$query_p = new WP_Query( array(
-    'post_type' => 'post',
-    'post_status' => 'publish',
-    'order'       => 'DESC',
-    'orderby'     => 'date',
-    'paged'       => $paged,
-) );
+echo "<div class='wrap__post'>";
+        ?>
+        <select id="filterPost">
+            <option value="">All</option>
+            <option value="videos" <?php if($option == 'videos') echo "selected"; ?>>Videos</option>
+            <option value="image" <?php if($option == 'image') echo "selected"; ?>>Images</option>
+            <option value="music" <?php if($option == 'music') echo "selected"; ?>>Music</option>
+        </select>
+        <?php 
+    if( have_posts() ){
+            echo "<div class='wrap'>";
+            while( have_posts() ){
+                the_post();
+                ?>
+                <div class="item">
+                    <a href="<?php the_permalink();?>"><?php the_title();?></a>
+                </div>
+                <?php
+            }
+            wp_reset_postdata();
+            
+            echo "</div>";
 
-if( $query_p->have_posts() ){
-    echo "<div class='wrap__post'>";
-        echo "<div class='wrap'>";
-        while( $query_p->have_posts() ){
-            $query_p->the_post();
-            ?>
-            <div class="item">
-                <a href="<?php the_permalink();?>"><?php the_title();?></a>
-            </div>
-            <?php
-        }
-        
-        echo "</div>";
+            the_posts_pagination( array(
+                'type' => 'plain',
+                'mid_size' => 1,
+                'prev_text' => __( 'Newer', 'pp' ),
+                'next_text' => __( 'Older', 'pp' ),
+                'screen_reader_text' => false
+            ) );
+    }
 
-        global $wp_query;
- 
-        $big = 999999999; // need an unlikely integer        
-        echo paginate_links( array(
-            'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-            'format' => '?paged=%#%',
-            'current' => $paged,
-            'total' => $wp_query->max_num_pages,
-        ) );
+echo "</div>";
 
-    echo "</div>";
-    wp_reset_postdata();
-}
-get_footer();
 ?>
+<script type="text/javascript">
+    ( function( w, $ ) {
+        $(document).ready(function() {
+            $("#filterPost").on('change', function(){
+              if (typeof URLSearchParams !== 'undefined') {
+                  // Get current URL and params
+                  current_url = new URL(window.location.href);
+                  let params = new URLSearchParams(current_url.search);
+
+                  // Remove params page and filter_by
+                  params.delete('page');
+                  params.delete('filter_by');
+
+                  // Set new value for filter_by if it exists
+                  $new_filter_val = $(this).val();
+                  if ( $new_filter_val ) params.set('filter_by', $new_filter_val);
+
+                  // Push new params to URL and reload page
+                  window.history.replaceState({}, '', `${location.pathname}?${params}`);
+                  location.reload();
+              } else {
+                  console.log(`Your browser ${navigator.appVersion} does not support URLSearchParams`)
+              }
+            });
+        });
+    } )( window, jQuery );
+</script>
+<?php
+
+get_footer();
