@@ -1,6 +1,8 @@
 <?php
 get_header();
 
+echo "Hello Everybody. This is Archive Page";
+
 $option = $_GET['filter_by'] ? $_GET['filter_by'] : 'all';
 
 echo "<div class='wrap__post'>";
