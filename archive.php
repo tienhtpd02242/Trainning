@@ -1,7 +1,7 @@
 <?php
 get_header();
 
-echo "Hello Everybody. This is Archive Page";
+echo "But I will edit somethings :)";
 
 $option = $_GET['filter_by'] ? $_GET['filter_by'] : 'all';
 
