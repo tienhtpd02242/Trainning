@@ -122,3 +122,10 @@ Twenty Twenty-Two is distributed under the terms of the GNU GPL.
     color: #FF0000;
 }
 
+#loadMoreTemplate{
+	padding: 16px;
+    display: block;
+    margin: 32px auto 0;
+    font-size: 16px;
+    cursor: pointer;
+}
