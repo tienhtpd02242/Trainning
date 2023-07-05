@@ -75,6 +75,10 @@ do_action( 'genesis_before_header' );
  */
 // do_action( 'genesis_header' );
 ?>
+<?php wp_nav_menu( array(
+	'theme_location' => 'mega_menu'
+) );?>
+
 <header id="header-main" class="header-main filterPT">
     <div class="container">
         <?php wp_nav_menu( array(

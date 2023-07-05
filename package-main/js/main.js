@@ -37,13 +37,19 @@
             
         });
         
-        $('.misha_loadmore').click( function() {
+        $('#loadMoreTemplate').click( function(e) {
+            e.preventDefault();
+            
+            let currentPageLoadMore = parseInt( $('#currentPage').val() );
+            let nextPageLoadMore = currentPageLoadMore + 1;
+            $('#currentPage').val(nextPageLoadMore);
+
+            let maxPageLoadMore = $('#max_page').val();
 
             let button = $(this),
                 data = {
                     'action' : 'tranning_load_more',
-                    'query' : pj_php_data.posts,
-                    'page' : pj_php_data.current_page,
+                    'next_page' : nextPageLoadMore,
                 };
 
             $.ajax({
@@ -54,15 +60,12 @@
                     button.text('Loading...');
                 },
                 success: function( data ){
+                    button.text('Load More');
+                    if( nextPageLoadMore == maxPageLoadMore ){
+                        button.remove();
+                    }
                     if( data ){
-                        $('.wrap').html( data );
-                        pj_php_data.current_page++;
-
-                        if( pj_php_data.current_page == pj_php_data.max_page){
-                            button.hide();
-                        }else{
-                            button.text('More Post');
-                        }
+                        $('.wrap-body.loadmore .wrap-cat').append(data);
                     }
                 }
             });

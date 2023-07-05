@@ -61,22 +61,29 @@ add_action('wp_ajax_tranning_load_more', 'tranning_load_more');
 add_action('wp_ajax_nopriv_tranning_load_more', 'tranning_load_more');
 function tranning_load_more() {
 
-    $args = json_decode( stripslashes( $_POST['query'] ), true );
-    $args['paged'] = $_POST['page'] + 1;
-    $args['post_status'] = 'publish';
+    $paged = $_POST['next_page'] ? $_POST['next_page'] : 1;
 
-    query_posts( $args );
+    $args = array(
+        'post_type' => array('movies', 'pictures', 'music'),
+        'post_status' => 'publish',
+        'orderby' => 'date',
+        'order' => 'DESC',
+        'paged' => $paged,
+    );
+    $query_post_type = new WP_Query( $args );
 
-    if(have_posts()){
-        while( have_posts()){
-            the_post();
-            ?><div class='title'><?php
-            the_title();
-            ?></div> <?php
+    if($query_post_type->have_posts()){
+        while( $query_post_type->have_posts()){
+            $query_post_type->the_post();
+            ?>
+            <div class="item">
+                <a href="<?php echo get_the_permalink();?>"><?php echo the_title();?></a>
+            </div>
+            <?php
         }
         wp_reset_postdata();
     }
-    exit();
+    die();
 }
 
 add_action('wp_ajax_data_fetch_search_ajax' , 'data_fetch_search_ajax');

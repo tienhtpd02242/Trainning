@@ -9,6 +9,7 @@ define('PJ_VERSION', '1.0.0');
 /**
  * Includes
  */
+require( PJ_DIR . 'mega-menu.php' );
 require( PJ_DIR . 'helper.php' );
 require( PJ_DIR . 'ajax.php' );
 require( PJ_DIR . 'static.php' );
