@@ -36,6 +36,20 @@ function filterByFieldPost($query){
                        'compare'=>'!=',
                 );
             }
+            if ( $_GET['filter_by'] == 'image' ) {
+                $meta_query[]  =   array(
+                       'key'=>'image',
+                       'value'=> '',
+                       'compare'=>'!=',
+                );
+            }
+            if ( $_GET['filter_by'] == 'music' ) {
+                $meta_query[]  =   array(
+                       'key'=>'music',
+                       'value'=> '',
+                       'compare'=>'!=',
+                );
+            }
             $query->set('meta_query',$meta_query);
         }
     }
